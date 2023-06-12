@@ -165,12 +165,12 @@ var _ = Describe("when creating a Kubernetes secret from an KGCPSecret with non 
 		},
 		GCPProjectID:          "cf-2tier-uhd-test-d7",
 		DisableNameSuffixHash: true,
-		Keys: []string{
-			"do-not-exist",
-		},
 	}
 
 	It("should create an error", func() {
+		encryptedSecret.Keys = []string{
+			"do-not-exist",
+		}
 		expected := "error getting 'do-not-exist' secret in Google project 'cf-2tier-uhd-test-d7'. key 'do-not-exist' was not found"
 		_, err := GetSecrets(ctx, nil, &encryptedSecret, getBaseTestKeys, getBaseTestValue)
 
