@@ -199,7 +199,7 @@ func createGCPSecretValuesGetter(plugin *KGCPSecret, listGCPSecrets secretsGette
 				return nil, err
 			}
 			if plugin.DataType == "envvar" {
-				envvar, err := godotenv.Unmarshal(string(value))
+				envvar, err := godotenv.Unmarshal(value)
 				if err != nil {
 					return nil, fmt.Errorf("error unmarshalling secret %q: %w", key, err)
 				}
